@@ -78,17 +78,13 @@
 
             function resolveNick() {
                 const applyText = (canvas, text) => {
-	    const ctx = canvas.getContext('2d');
-
-	let fontSize = 70;
-
-	do {
-        ctx.font = `${fontSize -= 10}px Minecraft`;
-        
-    } while (ctx.measureText(text).width > canvas.width);
-
-	return ctx.font;
-};
+	            const ctx = canvas.getContext('2d');
+	            let fontSize = 70;
+	            do {
+                ctx.font = `${fontSize -= 10}px Minecraft`;
+                } while (ctx.measureText(text).width > canvas.width);
+	            return ctx.font;
+            };
         
             let text = document.getElementById("text").value || "Text";
             const from = document.getElementById("color1").value || "#771177";
@@ -105,43 +101,43 @@
             if (strikethrough) join = "&#38;m" + join;
             if (obfuscated) join = "&#38;k" + join;
 
-        const canvas = document.getElementById("nick");
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-      
-        ctx.strokeStyle = '#771177';
-        ctx.strokeRect(0, 0, canvas.width - 1, canvas.height - 1);
-      
-        ctx.font = applyText(canvas, text);
+            const canvas = document.getElementById("nick");
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            ctx.strokeStyle = '#771177';
+            ctx.strokeRect(0, 0, canvas.width - 1, canvas.height - 1);
+            ctx.font = applyText(canvas, text);
 
-    let gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-    gradient.addColorStop(0, from);
-    gradient.addColorStop(1, to);
+            let gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+            gradient.addColorStop(0, from);
+            gradient.addColorStop(1, to);
 
-    ctx.fillStyle = gradient;
-    ctx.textAlign = "center";
-    ctx.shadowColor = "black";
-                ctx.shadowBlur = 0;
-                ctx.shadowOffsetX = 7;
-                ctx.shadowOffsetY = 7;
-    ctx.fillText(text, canvas.width / 2, canvas.height / 1.7);
-        
-        let scale = chroma.scale([from, to]);
-        let length = parseInt(text.split("").length);
-        let obj = [];
+            ctx.fillStyle = gradient;
+            ctx.textAlign = "center";
+            ctx.shadowColor = "black";
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetX = 7;
+            ctx.shadowOffsetY = 7;
+            ctx.fillText(text, canvas.width / 2, canvas.height / 1.7);
+                
+            let scale = chroma.scale([from, to]);
+            let length = parseInt(text.split("").length);
+            let obj = [];
 
-        for (let i = 1; i < length + 1; i++) {
-            let ts = 1 / length * i;
-            obj.push(scale(ts).hex());
-        }
+            for (let i = 1; i < length + 1; i++) {
+                let ts = 1 / length * i;
+                obj.push(scale(ts).hex());
+            }
             let nickCmd = [];
+            let nickCmd1 = [];
 
             for (let x = 0; x < length; x++) { nickCmd.push("&#38;" + obj[x] + join + text.charAt(x)); }
-            document.getElementById("cmd").innerHTML = nickCmd.join("");
+                document.getElementById("cmd").innerHTML = nickCmd.join("");
+
+            for (let y = 0; y < length; y++) { nickCmd1.push("{" + obj[y] + "}" + join + text.charAt(y)); }
+                document.getElementById("cmd1").innerHTML = nickCmd1.join("");
             }
-
-
-        </script>
+        </script>  
     </head>
     <body>
         <ul>
@@ -151,28 +147,29 @@
             <li><a href="./cosmonaut">Cosmonaut</a></li>
             <li><a href="./projects">Projects</a></li>
             <li><a onclick="toggleLightMode()">Toggle light mode</a></li>
-          </ul>
-          <center>
-        <label for="text">Text</label><br>
-        <input id="text" type="text" placeholder="Text"><br><br>
-        <label for="color1">First color</label><br>
-        <input id="color1" type="color" value="#771177"><br><br>
-        <label for="color2">Second color</label><br>
-        <input id="color2" type="color" value="#710000"><br><br>
-        <input type="checkbox" id="bold">
-        <label for="bold"><b>bold</b></label><br>
-        <input type="checkbox" id="italic">
-        <label for="italic"><i>italic</i></label><br>
-        <input type="checkbox" id="underlined">
-        <label for="underlined"><u>underlined</u></label><br>
-        <input type="checkbox" id="strikethrough">
-        <label for="strikethrough"><s>strikethrough</s></label><br>
-        <input type="checkbox" id="obfuscated">
-        <label for="obfuscated">obfuscated</label><br><br>
-        <button onclick="resolveNick()">Generate Gradient</button>
-        <p>Tip: You can use this code in essentials nicknames!</p><br>
-        <p id="cmd"></p>
-        <canvas id="nick"></canvas>
-    </center>
+        </ul>
+        <center>
+            <label for="text">Text</label><br>
+            <input id="text" type="text" placeholder="Text"><br><br>
+            <label for="color1">First color</label><br>
+            <input id="color1" type="color" value="#771177"><br><br>
+            <label for="color2">Second color</label><br>
+            <input id="color2" type="color" value="#710000"><br><br>
+            <input type="checkbox" id="bold">
+            <label for="bold"><b>bold</b></label><br>
+            <input type="checkbox" id="italic">
+            <label for="italic"><i>italic</i></label><br>
+            <input type="checkbox" id="underlined">
+            <label for="underlined"><u>underlined</u></label><br>
+            <input type="checkbox" id="strikethrough">
+            <label for="strikethrough"><s>strikethrough</s></label><br>
+            <input type="checkbox" id="obfuscated">
+            <label for="obfuscated">obfuscated</label><br><br>
+            <button onclick="resolveNick()">Generate Gradient</button>
+            <p>Tip: You can use this code in essentials nicknames!</p><br>
+            <p id="cmd"></p>
+            <p id="cmd1"></p>
+            <canvas id="nick"></canvas>
+        </center>
     </body>
 </html>
