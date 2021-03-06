@@ -130,12 +130,17 @@
             }
             let nickCmd = [];
             let nickCmd1 = [];
+            let nickCmd2 = [];
 
             for (let x = 0; x < length; x++) { nickCmd.push("&#38;" + obj[x] + join + text.charAt(x)); }
                 document.getElementById("cmd").innerHTML = nickCmd.join("");
 
             for (let y = 0; y < length; y++) { nickCmd1.push("{" + obj[y] + "}" + join + text.charAt(y)); }
                 document.getElementById("cmd1").innerHTML = nickCmd1.join("");
+            }
+
+            for (let y = 0; y < length; y++) { nickCmd2.push("<color:" + obj[y] + ">" + join + text.charAt(y)); }
+                document.getElementById("cmd2").innerHTML = nickCmd2.join("");
             }
         </script>  
     </head>
@@ -170,6 +175,7 @@
             <p>Tip: You can use this code in essentials nicknames!</p><br>
             <p id="cmd"></p>
             <p id="cmd1"></p>
+            <p id="cmd2"></p>
             <canvas id="nick"></canvas>
         </center>
     </body>
