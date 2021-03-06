@@ -100,6 +100,12 @@
             if (underlined) join = "&#38;n" + join;
             if (strikethrough) join = "&#38;m" + join;
             if (obfuscated) join = "&#38;k" + join;
+            let join1 = "";
+            if (bold) join1 = "&lt;bold&gt;" + join1;
+            if (italic) join1 = "&lt;italic&gt;" + join1;
+            if (underlined) join1 = "&lt;underlined&gt;" + join1;
+            if (strikethrough) join1 = "&lt;strikethrough&gt;" + join1;
+            if (obfuscated) join1 = "&lt;obfuscated&gt;" + join1;
 
             const canvas = document.getElementById("nick");
             const ctx = canvas.getContext('2d');
@@ -137,9 +143,8 @@
 
             for (let y = 0; y < length; y++) { nickCmd1.push("{" + obj[y] + "}" + join + text.charAt(y)); }
                 document.getElementById("cmd1").innerHTML = nickCmd1.join("");
-            }
 
-            for (let y = 0; y < length; y++) { nickCmd2.push("<color:" + obj[y] + ">" + join + text.charAt(y)); }
+            for (let z = 0; z < length; z++) { nickCmd2.push("&lt;color:" + obj[z] + "&gt;" + join1 + text.charAt(z)); }
                 document.getElementById("cmd2").innerHTML = nickCmd2.join("");
             }
         </script>  
