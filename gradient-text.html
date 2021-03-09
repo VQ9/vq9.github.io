@@ -143,8 +143,8 @@
 
             for (let y = 0; y < length; y++) { nickCmd1.push("{" + obj[y] + "}" + join + text.charAt(y)); }
                 document.getElementById("cmd1").innerHTML = nickCmd1.join("");
-            
-            for (let z = 0; z < 1; z++) { nickCmd2.push("&lt;gradient:"+from+":"+to+"&gt;"+join1+text.charAt(z)); }
+
+            for (let z = 0; z < 1; z++) { nickCmd2.push("&lt;gradient:"+from+":"+to+"&gt;"+join1+text); }
                 nickCmd2.push("&lt;/gradient&gt;&lt;reset&gt;")
                 document.getElementById("cmd2").innerHTML = nickCmd2.join("")
             }
